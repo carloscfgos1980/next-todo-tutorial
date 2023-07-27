@@ -43,7 +43,7 @@ Create a new folder inside app folder. Inside this this folder, create a file na
 
 4. components/TodoItem.tsx
 4.1 "use client" 
-* If I don't use <"use client"> then I can pass the props and the app breaks
+* If I don't use <"use client"> then I can pass the props and the app breaks. Explanation min 27:30. Basically we need to declare that this component is not working on the server but on the client
 
 4.2 Define the type of data that the props we are passing the the check box:
 type TodoItemProps = {
@@ -97,3 +97,34 @@ async function createTodo(data: FormData) {
 form action={createTodo}
 
 * VERY IMPORTANT: Every change happens in the server (API) sho we don't need to worry about handle state in the client (app).
+
+7. Create functionality to update the state (PATCH)
+app/page.tsx:
+7.1 Create the async function
+async function toggleTodo(id: string, complete: boolean) {
+  "use server"
+  // console.log(id, complete)
+
+  await prisma.todo.update({ where: { id }, data: { complete } })
+}
+7.2 Pass the function to TodoItems like a prop:
+<TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo}
+
+<TodoItem.tsx>:
+7.3 Add ToggleTodo to the description of the data (typeScript)
+type TodoItemProps = {
+    id: string
+    title: string
+    complete: boolean
+    toggleTodo: (id: string, complete: boolean) => void
+}
+7.4 Add toggleTodo to the function prop:
+export function TodoItem({ id, title, complete, toggleTodo }: TodoItemProps) 
+
+7.5 Add to the check box the state of the data
+                defaultChecked={complete}
+
+7.6 Add the onChange funtion to catch the changes:
+                onChange={e => toggleTodo(id, e.target.checked)}
+
+# THE END
