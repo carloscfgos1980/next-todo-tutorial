@@ -1,18 +1,18 @@
 import Link from "next/link";
 
 
-// async function createTodo(data: FormData) {
-//     "use server"
+async function createTodo(data: FormData) {
+    "use server"
 
-//     console.log("Hi")
-// }
+    console.log("Hi")
+}
 
 export default function Page() {
     return <>
         <header className='flex justify-between items-center mb-4'>
             <h1 className='text-2xl'>New</h1>
         </header>
-        {/* <form className="flex gap-2 flex-col">
+        <form action={createTodo} className="flex gap-2 flex-col">
             <input
                 type="text"
                 name="title"
@@ -32,6 +32,6 @@ export default function Page() {
                     Create
                 </button>
             </div>
-        </form> */}
+        </form>
     </>
 }

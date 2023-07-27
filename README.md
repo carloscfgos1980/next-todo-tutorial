@@ -40,3 +40,12 @@ Since I created the folder src and put app inside this folder, the correct root 
 Create a new folder inside app folder. Inside this this folder, create a file name <page.tsx>
 3.1 Inside app, <page.tsx>:
 <Link href="/new">New</Link>
+
+4. components/TodoItem.tsx
+It containts a check box. the dinamy style is not working
+
+className="cursor-pointer peer-checked:line-through peer-checked:text-slate-500"
+* explanation min 18. I did exactly still does not work
+
+5. new/page.tsx
+form working with console.log
