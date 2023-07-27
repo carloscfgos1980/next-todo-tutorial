@@ -35,3 +35,8 @@ Since I created the folder src and put app inside this folder, the correct root 
         className={`${inter.className} bg-slate-800 text-slate-100 container mx-auto p-4`}
       >
         {children}
+
+3. Create routes:
+Create a new folder inside app folder. Inside this this folder, create a file name <page.tsx>
+3.1 Inside app, <page.tsx>:
+<Link href="/new">New</Link>
