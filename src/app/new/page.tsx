@@ -1,10 +1,19 @@
+import { prisma } from "@/src/db";
 import Link from "next/link";
+import { redirect } from "next/navigation"
 
 
 async function createTodo(data: FormData) {
     "use server"
+    const title = data.get("title")?.valueOf()
+    if (typeof title !== "string" || title.length === 0) {
+        throw new Error("Invalid Title")
+    }
 
-    console.log("Hi")
+    await prisma.todo.create({ data: { title, complete: false } })
+    redirect("/")
+
+    // console.log("Hi")
 }
 
 export default function Page() {
